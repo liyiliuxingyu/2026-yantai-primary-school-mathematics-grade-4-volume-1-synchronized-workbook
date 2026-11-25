@@ -1,0 +1,14 @@
+\documentclass{article}
+\usepackage[paperwidth=600bp,paperheight=60bp,margin=0bp]{geometry}
+\usepackage{fontspec,amsmath,xcolor,tikz}
+\setmainfont{FandolKaiSC-Regular.ttf}[Path=fonts/]
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip=0pt plus 1pt
+\pagestyle{empty}\setlength{\parindent}{0pt}
+\begin{document}
+
+\definecolor{answer}{rgb}{0.850980,0.047059,0.070588}
+\null\begin{tikzpicture}[remember picture,overlay]\begin{scope}[shift={(current page.north west)},x=1bp,y=-1bp]
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,text=answer,align=left,text width=490bp] at (15,15) {\fontsize{8.5bp}{11.5bp}\selectfont 答：不对。\ensuremath{152}下和\ensuremath{150}下只是略高于\ensuremath{149}下，两人多出的次数，连\ensuremath{117}下这名同学不足\ensuremath{149}下的部分都补不齐，\\其余同学的成绩也都低于\ensuremath{149}下，所以平均成绩一定小于\ensuremath{149}下。\par};
+\end{scope}\end{tikzpicture}
+\end{document}

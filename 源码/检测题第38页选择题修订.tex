@@ -1,0 +1,14 @@
+\documentclass{article}
+\usepackage[paperwidth=600bp,paperheight=40bp,margin=0bp]{geometry}
+\usepackage{fontspec,amsmath,xcolor,tikz}
+\setmainfont{FandolKaiSC-Regular.ttf}[Path=fonts/]
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip=0pt plus 1pt
+\pagestyle{empty}\setlength{\parindent}{0pt}
+\begin{document}
+
+\definecolor{answer}{rgb}{0.850980,0.047059,0.070588}
+\null\begin{tikzpicture}[remember picture,overlay]\begin{scope}[shift={(current page.north west)},x=1bp,y=-1bp]
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,text=answer,align=left,text width=490bp] at (15,15) {\fontsize{7.5bp}{9.375bp}\selectfont 析：绕\ensuremath{O}点逆时针旋转\ensuremath{90^{\circ}}后，上半部的蓝色区域在右侧，下半部的蓝色区域在左侧，选\ensuremath{C}。\par};
+\end{scope}\end{tikzpicture}
+\end{document}

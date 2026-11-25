@@ -1,0 +1,18 @@
+% !TeX program = xelatex
+% 在原册第123页答案的空白区域增加附页位置说明。
+\documentclass{article}
+\usepackage{geometry,fontspec,tikz,xcolor}
+\geometry{paperwidth=595bp,paperheight=1166bp,margin=0bp}
+\setmainfont{FandolKaiSC-Regular.ttf}[Path=fonts/]
+\newfontfamily\kai{FandolKaiSC-Regular.ttf}[Path=fonts/]
+\pagestyle{empty}
+\definecolor{redpen}{rgb}{0.85,0.04,0.07}
+\begin{document}
+\null
+\begin{tikzpicture}[remember picture,overlay]
+  \begin{scope}[shift={(current page.north west)},x=1bp,y=-1bp]
+    \node[anchor=north west,align=left,text=redpen,font=\kai\fontsize{9.5bp}{15bp}\selectfont,inner sep=0bp]
+      at (317.4,352) {本题全部图形见紧接本页的\(3\)张附页。\\梯形\(13\)种；平行四边形\(10\)种。\\每幅图都标明底和高，并写出画法。};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

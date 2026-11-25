@@ -1,0 +1,30 @@
+% !TeX program = xelatex
+% 原册第91页第8题：保留正方形轮廓，把所用对称轴画为延伸的虚线。
+\documentclass{article}
+\usepackage{geometry,fontspec,tikz,xcolor}
+\geometry{paperwidth=595bp,paperheight=959.62bp,margin=0bp}
+\setmainfont{FandolKaiSC-Regular.ttf}[Path=fonts/]
+\newfontfamily\kai{FandolKaiSC-Regular.ttf}[Path=fonts/]
+\definecolor{redpen}{rgb}{0.85,0.04,0.07}
+\definecolor{gridink}{rgb}{.32,.34,.45}
+\pagestyle{empty}
+\begin{document}
+\null
+\begin{tikzpicture}[remember picture,overlay]
+  \begin{scope}[shift={(current page.north west)},x=1bp,y=-1bp]
+    \fill[white] (324.5,659) rectangle (531,781);
+    \begin{scope}[shift={(325.667,660)}]
+      \draw[gridink,line width=.35bp,step=17bp] (0,0) grid (204,119);
+      \draw[gridink,line width=.55bp] (0,0) rectangle (204,119);
+      \foreach \sx in {17,119}{
+        \draw[redpen,line width=.9bp] (\sx,17) rectangle ++(34,34);
+        \draw[redpen,line width=.75bp,dash pattern=on 3bp off 2bp]
+          (\sx-6,11) -- (\sx+40,57);
+      }
+      \node[anchor=west,fill=white,inner sep=1.4bp,text=redpen,
+        font=\kai\fontsize{8.5bp}{11bp}\selectfont]
+        at (10,96) {虚线表示所用的对称轴。};
+    \end{scope}
+  \end{scope}
+\end{tikzpicture}
+\end{document}

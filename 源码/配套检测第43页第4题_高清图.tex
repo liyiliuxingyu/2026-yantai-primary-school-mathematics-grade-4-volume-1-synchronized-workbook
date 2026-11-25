@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage[paperwidth=239.5bp,paperheight=179bp,margin=0bp]{geometry}
+\usepackage{xcolor,tikz}
+\usetikzlibrary{arrows.meta}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\definecolor{answer}{rgb}{0.850980,0.047059,0.070588}
+\begin{document}
+\null
+\begin{tikzpicture}[remember picture,overlay]
+\begin{scope}[shift={(current page.north west)},x=1bp,y=-1bp]
+  \begin{scope}[shift={(3,4)},x=15.5bp,y=-15.5bp]
+    % Coordinates: origin at top-left, x rightwards, y downwards.
+    \foreach \x in {0,...,15}
+      \draw[black!45,line width=0.3bp] (\x,0)--(\x,11);
+    \foreach \y in {0,...,11}
+      \draw[black!45,line width=0.3bp] (0,\y)--(15,\y);
+    \draw[black!50,line width=0.35bp] (0,0) rectangle (15,11);
+    % Original position and intermediate position: dashed triangles.
+    \draw[black,line width=0.7bp,dash pattern=on 1.7bp off 1.2bp]
+      (2,1)--(1,4)--(3,4)--cycle;
+    \draw[black,line width=0.7bp,dash pattern=on 1.7bp off 1.2bp]
+      (10,1)--(9,4)--(11,4)--cycle;
+    % Final position: a solid triangle.
+    \draw[black,line width=0.7bp] (10,7)--(9,10)--(11,10)--cycle;
+    \draw[black,line width=0.65bp,-{Stealth[length=4.5bp,width=3.4bp]}]
+      (4.5,2.3)--(7.5,2.3);
+    \draw[black,line width=0.65bp,-{Stealth[length=4.5bp,width=3.4bp]}]
+      (10,4.6)--(10,6.5);
+    % Original rectangle: 3 columns wide, 2 rows high.
+    \draw[black,line width=0.75bp] (1,6) rectangle (4,8);
+    % Clockwise 90-degree image about A=(4,8): width 2, height 3.
+    \draw[answer,line width=0.9bp] (4,5) rectangle (6,8);
+    \fill[black] (4,8) circle[radius=1.15bp];
+    \node[anchor=north east,inner sep=1.5bp,font=\fontsize{10.5bp}{12bp}\selectfont]
+      at (4,8) {\ensuremath{A}};
+  \end{scope}
+\end{scope}
+\end{tikzpicture}
+\end{document}
+

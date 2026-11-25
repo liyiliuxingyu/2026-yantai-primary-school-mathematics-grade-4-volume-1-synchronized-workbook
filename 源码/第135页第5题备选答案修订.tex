@@ -1,0 +1,20 @@
+\documentclass{article}
+\usepackage[paperwidth=490bp,paperheight=29bp,margin=0bp]{geometry}
+\usepackage{fontspec,xcolor,tikz}
+\setmainfont{FandolKaiSC-Regular.ttf}[Path=fonts/]
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\definecolor{answer}{rgb}{0.850980,0.047059,0.070588}
+\begin{document}
+\null
+\begin{tikzpicture}[remember picture,overlay]
+\begin{scope}[shift={(current page.north west)},x=1bp,y=-1bp]
+  % Place this transparent patch at (70,414)-(560,443) on the book page.
+  % Preserve the original answer 梯形 and add its accepted alternative.
+  \node[anchor=base west,inner sep=0pt,outer sep=0pt,text=answer] at (60,12.30347)
+    {\fontsize{9.33153bp}{11bp}\selectfont （或平行四边形）};
+  \node[anchor=base west,inner sep=0pt,outer sep=0pt,text=answer] at (3.3,25.77841)
+    {\fontsize{7.5bp}{9.5bp}\selectfont 析：沿对角线分成两全同三角形；连接一组对边的中点，分两全同平行四边形；过中心斜切且不过顶点、也不平行于边，可得两全同梯形。};
+\end{scope}
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,20 @@
+% !TeX program = xelatex
+% 本文件只生成透明补绘层；与原PDF第128页叠加后构成修订后的原册第121页。
+\documentclass{article}
+\usepackage{geometry,tikz,xcolor}
+\geometry{paperwidth=595bp,paperheight=928.37bp,margin=0bp}
+\pagestyle{empty}
+\definecolor{redpen}{rgb}{0.85,0.04,0.07}
+\begin{document}
+\null
+\begin{tikzpicture}[remember picture,overlay]
+  \begin{scope}[shift={(current page.north west)},x=1bp,y=-1bp]
+    % 三条线均由原旋转中心O出发，准确接到对应旗面的边上。
+    \draw[redpen,line width=1bp,line cap=round] (214.34642,393.92407) -- (167.24568,393.92407);
+    \draw[redpen,line width=1bp,line cap=round] (214.34642,393.92407) -- (259.98093,393.92407);
+    \draw[redpen,line width=1bp,line cap=round] (214.34642,393.92407) -- (214.34642,440.32242);
+    % 保留旋转中心O的黑色点。
+    \fill[black] (214.34642,393.92407) circle[radius=1.5bp];
+  \end{scope}
+\end{tikzpicture}
+\end{document}

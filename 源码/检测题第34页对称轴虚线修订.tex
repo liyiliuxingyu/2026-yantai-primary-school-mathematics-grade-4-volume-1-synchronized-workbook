@@ -1,0 +1,38 @@
+% !TeX program = xelatex
+% 检测题第34页第3题（2）：中轴与网格线重合，重绘网格使虚线间隔清晰可见。
+\documentclass{article}
+\usepackage{geometry,fontspec,tikz,xcolor}
+\geometry{paperwidth=595bp,paperheight=853.18bp,margin=0bp}
+\setmainfont{FandolKaiSC-Regular.ttf}[Path=fonts/]
+\newfontfamily\kai{FandolKaiSC-Regular.ttf}[Path=fonts/]
+\definecolor{redpen}{rgb}{0.85,0.04,0.07}
+\definecolor{gridink}{rgb}{.32,.34,.45}
+\pagestyle{empty}
+\begin{document}
+\null
+\begin{tikzpicture}[remember picture,overlay]
+ \begin{scope}[shift={(current page.north west)},x=1bp,y=-1bp]
+  \fill[white] (186.2,309.2) rectangle (415.5,402.5);
+  \begin{scope}[shift={(187.3,310.4)},x=11.3333bp,y=-11.3333bp]
+   % 保留20列、8行；第5列正是给定的对称轴，避免再叠一条连续网格线。
+   \foreach \x in {0,1,2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20}{
+     \draw[gridink,line width=.32bp] (\x,0)--(\x,8);
+   }
+   \foreach \y in {0,...,8}{\draw[gridink,line width=.32bp] (0,\y)--(20,\y);}
+   \draw[gridink,line width=.55bp] (0,0) rectangle (20,8);
+   % 原题给出的左半图以黑色保留，补出的右半图及两次平移结果用红色。
+   \draw[black,line width=.85bp,line join=round] (5,1)--(4,3)--(2,4)--(4,5)--(5,7);
+   \draw[redpen,line width=.9bp,line join=round] (5,1)--(6,3)--(8,4)--(6,5)--(5,7);
+   \foreach \dx in {6,12}{
+    \begin{scope}[shift={(\dx,0)}]
+     \draw[redpen,line width=.9bp,line join=round]
+      (5,1)--(6,3)--(8,4)--(6,5)--(5,7)--(4,5)--(2,4)--(4,3)--cycle;
+    \end{scope}
+   }
+   \draw[black,line width=.75bp,dash pattern=on 3bp off 2bp] (5,-.5)--(5,8.5);
+   \node[anchor=west,fill=white,inner sep=1bp,font=\kai\fontsize{7.8bp}{10bp}\selectfont]
+      at (5.35,-.55) {对称轴};
+  \end{scope}
+ \end{scope}
+\end{tikzpicture}
+\end{document}
