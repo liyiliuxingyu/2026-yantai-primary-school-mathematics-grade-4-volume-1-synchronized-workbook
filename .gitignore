@@ -1,0 +1,19 @@
+# The complete PDF is distributed as a verified Release asset.
+/答案/小学数学同步练习册四年级上册答案.pdf
+
+# Reproducible build outputs.
+build/
+__pycache__/
+*.py[cod]
+*.aux
+*.log
+*.out
+*.toc
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.fmt
+/源码/小数竖式对齐修订/vertical_patches.pdf
+
+# Incomplete downloads are never project sources.
+.answers-download-*.part
