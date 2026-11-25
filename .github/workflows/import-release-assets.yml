@@ -1,0 +1,56 @@
+name: Import complete project files into Git LFS
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/import-release-assets.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: import-complete-project-files
+  cancel-in-progress: false
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out this repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+          lfs: false
+          persist-credentials: true
+
+      - name: Restore and verify the exact published files
+        run: |
+          python3 工具/同步发布附件.py
+          python3 工具/检查工程.py
+
+      - name: Commit complete PDF and engineering ZIP through Git LFS
+        shell: bash
+        run: |
+          set -euo pipefail
+          git lfs install --local
+          git add .gitattributes .gitignore SHA256SUMS.txt
+          git add '答案/小学数学同步练习册四年级上册答案.pdf' '工程包/workbook-project.zip'
+          if git diff --cached --quiet; then
+            echo 'All complete project files are already committed.'
+          else
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'Store complete answer PDF and engineering ZIP in the code repository'
+          fi
+          git lfs fsck
+          git lfs push origin HEAD
+          git push origin HEAD:main
+
+      - name: Verify complete working files
+        run: |
+          python3 工具/同步发布附件.py --check-only
+          python3 工具/检查工程.py
+          git lfs ls-files
