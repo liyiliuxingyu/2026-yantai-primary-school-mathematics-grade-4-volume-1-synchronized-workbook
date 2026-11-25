@@ -4,7 +4,22 @@
 
 本仓库保存当前答案、可编辑修订源码和 Lean 续作资料。数学内容基于 2026 年 11 月 17 日整理的答案第 37 版；GitHub 发布不会改变原工程文件的数学内容。
 
-## 下载完整工程
+## 所有现行文件都在代码仓库中
+
+完整答案、原始续作工程包、校验清单、全部现行源码、字体、Lean 和接续资料均已纳入 `main` 分支。完整 PDF 与工程 ZIP 使用 Git LFS 保存，文件内容保持原样。
+
+| 仓库中的文件或目录 | 内容 |
+| --- | --- |
+| [答案/小学数学同步练习册四年级上册答案.pdf](答案/小学数学同步练习册四年级上册答案.pdf) | 完整答案：213 页、203 条书签 |
+| [工程包/workbook-project.zip](工程包/workbook-project.zip) | 原始最小续作工程包，60 个文件，包含完整 PDF |
+| [SHA256SUMS.txt](SHA256SUMS.txt) | 两个完整文件的 SHA-256 校验值与仓库路径 |
+| [源码/](源码/) | TeX、TikZ、计算与定位 JSON、编译字体及脚本 |
+| [Lean/](Lean/) | 现行 Lean 源码、工具链版本和运行说明 |
+| [核验/](核验/)、[工具/](工具/) | 核验记录、完整性检查及附件恢复工具 |
+
+在文件页面点击下载即可取得完整文件。仓库已开启 **Include Git LFS objects in archives**，当前 `main` 分支的 **Code → Download ZIP** 会包含实际 PDF 和工程 ZIP。
+
+## Release 下载入口
 
 | 下载 | 内容 |
 | --- | --- |
@@ -12,9 +27,9 @@
 | [完整答案 PDF](https://github.com/liyiliuxingyu/2026-yantai-primary-school-mathematics-grade-4-volume-1-synchronized-workbook/releases/download/v2026.11.25/answers.pdf) | 213 页、203 条书签，143,553,201 字节 |
 | [本次发布页](https://github.com/liyiliuxingyu/2026-yantai-primary-school-mathematics-grade-4-volume-1-synchronized-workbook/releases/tag/v2026.11.25) | 发布附件与说明 |
 
-完整 PDF 和原工程 ZIP 均超过普通 Git 单文件限制，因此原文件放在同一仓库的 Release 中，源码、字体、Lean 与接续资料直接保存在仓库目录中。**GitHub 的“Code → Download ZIP”只包含仓库目录，完整工程请下载上表中的 `workbook-project.zip`。**
+Release 保留同一份原文件作为独立下载入口。`v2026.11.25` 是首次发布时的固定标签；查看全部最新仓库文件请使用 `main` 分支。
 
-发布状态：完整答案 PDF 和原始续作工程 ZIP 已发布到 `v2026.11.25`，附件大小与 SHA-256 已核对一致。仓库内 62 个文件也已逐项核对路径、大小和内容。下载附件后可按下表核对 SHA-256；克隆仓库后，运行 `python3 工具/下载完整答案.py` 恢复完整答案。
+完整 PDF 为 143,553,201 字节，原始工程 ZIP 为 106,044,118 字节。两者的内容校验值见下表；仓库路径清单见 `SHA256SUMS.txt`。
 
 ### 文件校验值
 
@@ -27,11 +42,13 @@
 
 | 目录或文件 | 内容 |
 | --- | --- |
+| `答案/`、`工程包/` | 已纳入 Git LFS 的完整 PDF 与原始工程 ZIP |
 | `源码/` | 18 份现行 TeX、15 份完整计算与定位 JSON、4 个编译字体及许可、竖式修订脚本与编译入口 |
 | `Lean/` | 原册第 1—4 页的合并 Lean 源码，107 个定理，仅依赖 `Std`；固定工具链 `leanprover/lean4:v4.36.0-rc1` |
 | `核验/` | PDF 无损整理、源码取舍、编译入口与解压续作的既有核验记录 |
 | `工具/检查工程.py` | 检查原工程文件大小与 SHA-256；可另外检查 PDF 页数及书签 |
 | `工具/下载完整答案.py` | 从本仓库 Release 下载完整 PDF，校验后恢复到原目录；已有不同文件时拒绝覆盖 |
+| `工具/同步发布附件.py` | 恢复两个固定发布附件，核对大小和 SHA-256；可用 `--check-only` 只检查本地文件 |
 | `AGENTS.md`、`00_新对话接续说明.txt` | 新对话接手入口、书写规范、已确认更正和操作流程 |
 | `接续状态.json`、`工程清单.json` | 真实完成范围、原册与物理 PDF 页码对应、原工程文件校验值 |
 
@@ -41,22 +58,26 @@
 
 原书部分题干和底图仍是 PDF 中的扫描页。本仓库保留全部现行有效修订源码，完整答案 PDF 是后续局部修改的基底；这里并不是从一个主 TeX 文件即可重新生成全书的工程。旧动画课件不在本次现行答案与 Lean 续作包内。
 
-## 克隆仓库后恢复完整答案
+## 克隆并检查完整工程
 
-需要 Python 3.9 或更高版本。在仓库根目录执行：
+安装 Git LFS 后克隆仓库；已有克隆也可运行 `git lfs pull` 取回完整大文件：
 
 ```sh
-python3 工具/下载完整答案.py
+git lfs install
+git clone https://github.com/liyiliuxingyu/2026-yantai-primary-school-mathematics-grade-4-volume-1-synchronized-workbook.git
+cd 2026-yantai-primary-school-mathematics-grade-4-volume-1-synchronized-workbook
+git lfs pull
 python3 工具/检查工程.py
+python3 工具/同步发布附件.py --check-only
 ```
 
-下载工具只使用 Python 标准库。它会读取 `接续状态.json`，把完整 PDF 恢复到：
+检查工具需要 Python 3.9 或更高版本。完整 PDF 的路径仍为：
 
 ```text
 答案/小学数学同步练习册四年级上册答案.pdf
 ```
 
-已有正确 PDF 时直接核验成功；已有不同内容时会停止，避免覆盖你后续修改的答案。若 Release 尚未上传，下载会明确失败，不会把不完整文件当成完整答案。
+若只取得了 LFS 指针，先运行 `git lfs pull`。也可运行 `python3 工具/同步发布附件.py`，从已发布附件恢复对应的完整文件；它只替换缺失文件或校验信息完全相符的 LFS 指针，对其他已有内容拒绝覆盖。已有正确文件时只做核验。
 
 如需读取、渲染或修改 PDF：
 
