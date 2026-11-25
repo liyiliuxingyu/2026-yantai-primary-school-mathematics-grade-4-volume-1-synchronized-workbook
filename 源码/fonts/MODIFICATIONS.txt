@@ -1,0 +1,13 @@
+本轮字体处理说明（2026-11-11）
+
+FandolKaiSC-NativeBaseline.ttf 与 FandolKaiSC-Regular.ttf 以 Fandol 团队的 FandolKai-Regular.otf 为来源，中文采用大陆简体字形。本最小续接包保留当前成品字体、README 与 COPYING；原字体 GPL 及字体例外继续适用。
+
+1. 将原始 CFF 曲线转换为 TrueType 二次曲线，转换误差参数为每字体单位0.25，保留字符映射、字宽与垂直度量。NativeBaseline 为转换后的原始基线版本。
+2. 为适应旧 PDF 已有文字框，现行 Regular 版将普通字形的真实纵向轮廓拟合到 legacy_y_bounds.json 的数值范围内，并在上下各留1个字体单位。该表仅含历史轮廓的纵向数值，不含旧字体轮廓。普通字形的横向轮廓及 advance 不变。
+3. 圈号在字框中心周围等比缩小至96%，纵向再平移10个字体单位；advance 不变，相应调整左侧承位，使相邻圈号之间留出间距。
+4. 顿号、句号、全角逗号与全角句点保留大陆简体低位结构，按本轮基线适配上移95个字体单位。
+5. Fandol 缺少的⑪、⑫、杧、囍单独采用明确的 NotoSerifSC-Regular 字形。TeX 使用 scfallback 字体命令；PDF在原坐标补入SC字形。
+6. 附带 NotoSansSC/NotoSerifSC 的 Regular/Bold 均取自 Noto CJK 字体集合中明确标为SC的面（fontNumber=2）。当前成品TTF保持原来的明确SC字形子集，不附日文、台湾或香港区域字体。
+7. 本轮没有拷贝旧UKai字体的任何字形轮廓。现行字体命名独立，旧字体文件不随新包分发。
+
+本最小续接包只保留直接编译依赖，不提供字体轮廓重建功能；已有成品字体的字节未改变。原始OTF、NativeBaseline、源子集及重建脚本仍属于此前完整源码工程。一般修改题目、解析、TikZ图形及重新编译无需重建字体。

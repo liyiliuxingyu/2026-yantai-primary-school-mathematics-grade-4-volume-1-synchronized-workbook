@@ -1,0 +1,6 @@
+当前直接编译字体及许可
+
+FandolKaiSC-Regular.ttf：Fandol 团队（Clerk Ma、Jie Su）的楷体转换及版式适配版本，原作者说明见 README，许可见 COPYING（GPL及字体例外），改动记录见 MODIFICATIONS.txt。完整保留此成品字体，便于继续增加简体汉字。
+NotoSansSC-Regular.ttf、NotoSerifSC-Regular.ttf：来自明确的SC字形面，保留当前源码所需字符子集；许可见 NOTO_OFL.txt、NOTO_DEBIAN_COPYRIGHT.txt。前者用于123附页标题；后者用于短解析中的⑪、⑫、杧、囍等补充字形。
+DejaVuSans.ttf：短解析特殊符号使用，许可见 DejaVuSans_COPYRIGHT.txt。
+本包四个字体与此前核验版本逐字节相同，不使用JP、TC或HK区域字体作为替代。
